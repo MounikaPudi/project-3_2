@@ -1,0 +1,354 @@
+-- This CLP file was created using DB2LOOK Version "9.7" 
+-- Timestamp: 1/31/2022 12:12:36 PM
+-- Database Name: FBS            
+-- Database Manager Version: DB2/NT Version 9.7.2          
+-- Database Codepage: 1252
+-- Database Collating Sequence is: UNIQUE
+
+
+CONNECT TO FBS;
+
+
+
+-- Mimic tablespace
+
+ALTER TABLESPACE SYSCATSPACE
+      PREFETCHSIZE AUTOMATIC
+      OVERHEAD 7.500000
+      NO FILE SYSTEM CACHING 
+      AUTORESIZE YES 
+      TRANSFERRATE 0.060000;
+
+
+ALTER TABLESPACE TEMPSPACE1
+      PREFETCHSIZE AUTOMATIC
+      OVERHEAD 7.500000
+      FILE SYSTEM CACHING 
+      TRANSFERRATE 0.060000;
+
+
+ALTER TABLESPACE USERSPACE1
+      PREFETCHSIZE AUTOMATIC
+      OVERHEAD 7.500000
+      NO FILE SYSTEM CACHING 
+      AUTORESIZE YES 
+      TRANSFERRATE 0.060000;
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."USERS"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."USERS"  (
+		  "ID" VARCHAR(15) NOT NULL , 
+		  "PWD" VARCHAR(15) NOT NULL , 
+		  "UTYPE" VARCHAR(10) NOT NULL , 
+		  "ACTIVE" INTEGER NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."USERS"
+
+ALTER TABLE "DB2ADMIN"."USERS" 
+	ADD CONSTRAINT "CC1324902986672" PRIMARY KEY
+		("ID");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."STUDENTS"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."STUDENTS"  (
+		  "SNO" VARCHAR(12) NOT NULL , 
+		  "SNAME" VARCHAR(50) NOT NULL , 
+		  "BRANCH" VARCHAR(11) NOT NULL , 
+		  "SECTION" VARCHAR(2) NOT NULL , 
+		  "SYEAR" VARCHAR(3) NOT NULL , 
+		  "SEM" VARCHAR(3) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."STUDENTS"
+
+ALTER TABLE "DB2ADMIN"."STUDENTS" 
+	ADD CONSTRAINT "CC1325128945255" PRIMARY KEY
+		("SNO");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."FACULTY"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."FACULTY"  (
+		  "FID" VARCHAR(10) NOT NULL , 
+		  "FNAME" VARCHAR(30) NOT NULL , 
+		  "DEPT" VARCHAR(15) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."FACULTY"
+
+ALTER TABLE "DB2ADMIN"."FACULTY" 
+	ADD CONSTRAINT "CC1325232762293" PRIMARY KEY
+		("FID");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."SUBJECTS"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."SUBJECTS"  (
+		  "SID" VARCHAR(20) NOT NULL , 
+		  "SUBNAME" VARCHAR(100) NOT NULL , 
+		  "BRANCH" VARCHAR(10) NOT NULL , 
+		  "YEAR" VARCHAR(5) NOT NULL , 
+		  "SEM" VARCHAR(5) NOT NULL , 
+		  "CODE" INTEGER NOT NULL , 
+		  "AY" VARCHAR(10) NOT NULL , 
+		  "SHORTNAME" VARCHAR(20) )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."SUBJECTS"
+
+ALTER TABLE "DB2ADMIN"."SUBJECTS" 
+	ADD CONSTRAINT "CC1325925940395" PRIMARY KEY
+		("SID",
+		 "BRANCH");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."MAPSUBJECTS"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."MAPSUBJECTS"  (
+		  "MAPID" VARCHAR(50) NOT NULL , 
+		  "FID" VARCHAR(5) NOT NULL , 
+		  "SID" VARCHAR(20) NOT NULL , 
+		  "SECTION" VARCHAR(5) NOT NULL , 
+		  "AY" VARCHAR(10) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."MAPSUBJECTS"
+
+ALTER TABLE "DB2ADMIN"."MAPSUBJECTS" 
+	ADD CONSTRAINT "CC1326252512810" PRIMARY KEY
+		("MAPID");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."FEEDBACK"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."FEEDBACK"  (
+		  "FDID" VARCHAR(40) NOT NULL , 
+		  "MAPID" VARCHAR(20) NOT NULL , 
+		  "SNO" VARCHAR(12) NOT NULL , 
+		  "A1" INTEGER NOT NULL , 
+		  "A2" INTEGER NOT NULL , 
+		  "A3" INTEGER NOT NULL , 
+		  "B1" INTEGER NOT NULL , 
+		  "B2" INTEGER NOT NULL , 
+		  "B3" INTEGER NOT NULL , 
+		  "B4" INTEGER NOT NULL , 
+		  "C1" INTEGER NOT NULL , 
+		  "C2" INTEGER NOT NULL , 
+		  "C3" INTEGER NOT NULL , 
+		  "D1" INTEGER NOT NULL , 
+		  "D2" INTEGER NOT NULL , 
+		  "D3" INTEGER NOT NULL , 
+		  "ATOT" INTEGER NOT NULL , 
+		  "BTOT" INTEGER NOT NULL , 
+		  "CTOT" INTEGER NOT NULL , 
+		  "DTOT" INTEGER NOT NULL , 
+		  "TOT" INTEGER NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."FEEDBACK"
+
+ALTER TABLE "DB2ADMIN"."FEEDBACK" 
+	ADD CONSTRAINT "CC1407138501187" PRIMARY KEY
+		("FDID");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."ATTEMPTEDSTLIST"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."ATTEMPTEDSTLIST"  (
+		  "SNO" VARCHAR(12) NOT NULL , 
+		  "SNAME" VARCHAR(50) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."NOTATTEMPTSTLIST"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."NOTATTEMPTSTLIST"  (
+		  "SNO" VARCHAR(12) NOT NULL , 
+		  "SNAME" VARCHAR(50) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."DUMPUSERS"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."DUMPUSERS"  (
+		  "ID" VARCHAR(15) NOT NULL , 
+		  "PWD" VARCHAR(15) NOT NULL , 
+		  "UTYPE" VARCHAR(10) NOT NULL , 
+		  "ACTIVE" INTEGER NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."DUMPST"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."DUMPST"  (
+		  "SNO" VARCHAR(12) NOT NULL , 
+		  "SNAME" VARCHAR(50) NOT NULL , 
+		  "BRANCH" VARCHAR(11) NOT NULL , 
+		  "SECTION" VARCHAR(2) NOT NULL , 
+		  "SYEAR" VARCHAR(3) NOT NULL , 
+		  "SEM" VARCHAR(3) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."FACULTYFEEDBACK"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."FACULTYFEEDBACK"  (
+		  "CLASS" VARCHAR(30) NOT NULL , 
+		  "SUBJNAME" VARCHAR(100) NOT NULL , 
+		  "BRANCH" VARCHAR(20) NOT NULL , 
+		  "A1" INTEGER NOT NULL , 
+		  "A2" INTEGER NOT NULL , 
+		  "A3" INTEGER NOT NULL , 
+		  "B1" INTEGER NOT NULL , 
+		  "B2" INTEGER NOT NULL , 
+		  "B3" INTEGER NOT NULL , 
+		  "B4" INTEGER NOT NULL , 
+		  "C1" INTEGER NOT NULL , 
+		  "C2" INTEGER NOT NULL , 
+		  "C3" INTEGER NOT NULL , 
+		  "D1" INTEGER NOT NULL , 
+		  "D2" INTEGER NOT NULL , 
+		  "D3" INTEGER NOT NULL , 
+		  "A" INTEGER NOT NULL , 
+		  "B" INTEGER NOT NULL , 
+		  "C" INTEGER NOT NULL , 
+		  "D" INTEGER NOT NULL , 
+		  "TOT" INTEGER NOT NULL , 
+		  "TOTST" VARCHAR(10) NOT NULL , 
+		  "AY" VARCHAR(12) NOT NULL , 
+		  "DEPT" VARCHAR(50) NOT NULL , 
+		  "FNAME" VARCHAR(50) )   
+		 IN "USERSPACE1" ; 
+
+
+
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."FEMAP"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."FEMAP"  (
+		  "MAPID" VARCHAR(20) NOT NULL , 
+		  "SID" VARCHAR(20) NOT NULL , 
+		  "FID" VARCHAR(20) NOT NULL , 
+		  "AY" VARCHAR(20) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."FEMAP"
+
+ALTER TABLE "DB2ADMIN"."FEMAP" 
+	ADD CONSTRAINT "CC1476511741515" PRIMARY KEY
+		("MAPID");
+
+
+
+------------------------------------------------
+-- DDL Statements for table "DB2ADMIN"."OEMAP"
+------------------------------------------------
+ 
+
+CREATE TABLE "DB2ADMIN"."OEMAP"  (
+		  "MAPID" VARCHAR(20) NOT NULL , 
+		  "SID" VARCHAR(20) NOT NULL , 
+		  "FID" VARCHAR(20) NOT NULL , 
+		  "AY" VARCHAR(20) NOT NULL , 
+		  "BRANCH" VARCHAR(20) NOT NULL )   
+		 IN "USERSPACE1" ; 
+
+
+-- DDL Statements for primary key on Table "DB2ADMIN"."OEMAP"
+
+ALTER TABLE "DB2ADMIN"."OEMAP" 
+	ADD CONSTRAINT "CC1579727275555" PRIMARY KEY
+		("MAPID",
+		 "BRANCH");
+
+
+
+
+
+
+
+
+
+COMMIT WORK;
+
+CONNECT RESET;
+
+TERMINATE;
+
+-- USER is: WIN-5LOKGQURUDI$
+-- Specified SCHEMA is: DB2ADMIN
+-- The db2look utility will consider only the specified tables 
+-- Creating DDL for table(s)
+
+-- Schema name is ignored for the Federated Section
+;
